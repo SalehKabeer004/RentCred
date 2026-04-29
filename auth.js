@@ -10,9 +10,15 @@ if (signupForm) {
         
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
-        const role = document.getElementById('role-select').value;
+        const role = document.getElementById('role').value;
 
         const { data, error } = await supabase.auth.signUp({
             email: email,
