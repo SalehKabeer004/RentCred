@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentCred — Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Rent<span>Cred</span></div>
+            <div class="nav-right">
+                <div class="user-avatar-nav" id="nav-avatar">U</div>
+                <span class="nav-username" id="nav-username">User</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-wrapper">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-profile">
+                <div class="avatar-circle" id="sidebar-avatar">U</div>
+                <div class="sidebar-user-info">
+                    <p class="sidebar-name" id="sidebar-name">User</p>
+                    <p class="sidebar-email" id="sidebar-email">user@email.com</p>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="active" data-section="overview">
+                    <a href="#"><i class="fas fa-th-large"></i> Overview</a>
+                </li>
+                <li data-section="profile">
+                    <a href="#"><i class="fas fa-user-circle"></i> Profile Settings</a>
+                </li>
+                <li id="logout-btn">
+                    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- OVERVIEW SECTION -->
+            <section id="section-overview" class="dash-section active-section">
+                <header class="welcome-banner">
+                    <div>
+                        <h1>Welcome, <span id="user_name">User</span>! 👋</h1>
+                        <p>Yahan aap apni properties aur rental activity manage kar sakte hain.</p>
+                    </div>
+                    <div class="header-date" id="header-date">Current Date</div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap blue">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-views">—</h3>
+                            <p>Profile Views</p>
+                        </div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 12%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap green">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-homes">—</h3>
+                            <p>Listed Homes</p>
+                        </div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 2</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap amber">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-rating">—</h3>
+                            <p>User Rating</p>
+                        </div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 0.2</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap purple">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-deals">—</h3>
+                            <p>Active Deals</p>
+                        </div>
+                        <div class="stat-trend neutral"><i class="fas fa-minus"></i> same</div>
+                    </div>
+                </div>
+
+                <div class="activity-section">
+                    <div class="section-header">
+                        <h2>Recent Activity</h2>
+                        <button class="add-btn"><i class="fas fa-plus"></i> Add Property</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activity-tbody">
+                                <tr>
+                                    <td>Gulshan Apartment</td>
+                                    <td>Oct 12, 2026</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td><button class="edit-btn"><i class="fas fa-pen"></i> Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Defence Villa</td>
+                                    <td>Oct 10, 2026</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td><button class="edit-btn"><i class="fas fa-pen"></i> Edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MY PROPERTIES SECTION -->
+            <section id="section-properties" class="dash-section">
+                <header class="welcome-banner">
+                    <div>
+                        <h1>My Properties</h1>
+                        <p>Apni saari listed properties yahan dekh aur manage kar sakte hain.</p>
+                    </div>
+                </header>
+                <div class="empty-state">
+                    <i class="fas fa-home"></i>
+                    <h3>Koi property listed nahi hai</h3>
+                    <p>Pehli property list karne ke liye + Add Property button click karein.</p>
+                    <button class="add-btn-lg"><i class="fas fa-plus"></i> Add Property</button>
+                </div>
+            </section>
+
+            <!-- FAVORITES SECTION -->
+            <section id="section-favorites" class="dash-section">
+                <header class="welcome-banner">
+                    <div>
+                        <h1>Favorites</h1>
+                        <p>Aapki saved properties yahan milein gi.</p>
+                    </div>
+                </header>
+                <div class="empty-state">
+                    <i class="fas fa-heart"></i>
+                    <h3>Abhi tak koi favorite nahi</h3>
+                    <p>Browse Homes section mein jaa kar properties save karein.</p>
+                </div>
+            </section>
+
+            <!-- PROFILE SETTINGS SECTION -->
+            <section id="section-profile" class="dash-section">
+                <header class="welcome-banner">
+                    <div>
+                        <h1>Profile Settings</h1>
+                        <p>Apni account information update karein.</p>
+                    </div>
+                </header>
+                <div class="profile-card">
+                    <div class="profile-avatar-wrap">
+                        <div class="avatar-circle-lg" id="profile-avatar-lg">H</div>
+                        <button class="change-avatar-btn">Change Photo</button>
+                    </div>
+                    <div class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="profile-fullname" placeholder="Your full name" />
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="profile-email-field" placeholder="your@email.com" readonly />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" placeholder="+92 300 0000000" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" placeholder="Karachi, Lahore..." />
+                            </div>
+                        </div>
+                        <button class="save-btn">Save Changes</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">Rent<span>Cred</span></div>
+                <p>Smart Renting, Better Living. Building trust in the rental marketplace through verified credibility and community-driven reviews.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Safety</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to get the latest listings.</p>
+                <div class="footer-subscribe">
+                    <input type="email" placeholder="Email Address">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RentCred. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
