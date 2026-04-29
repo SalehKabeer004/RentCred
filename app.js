@@ -11,5 +11,4 @@ async function fetchProperties() {
     }
 }
 
-
 fetchProperties()
