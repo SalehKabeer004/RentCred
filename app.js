@@ -1,3 +1,4 @@
+
 import { db } from './dbConnection.js';
 
 async function fetchProperties() {
