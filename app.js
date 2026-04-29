@@ -1,8 +1,8 @@
 
-import { db } from './dbConnection.js';
+import { supabase } from './dbConnection.js';
 
 async function fetchProperties() {
-    let { data: properties, error } = await db
+    let { data: properties, error } = await supabase
         .from('properties')
         .select('*')
 

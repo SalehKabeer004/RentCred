@@ -14,7 +14,7 @@
     <div class="container">
         <div class="heading">Create Account
         </div>
-        <form action="" class="form">
+        <!-- <form action="" class="form">
             <div class="names" style="display: flex; gap: 10px;">
                 <input required="" class="input" type="text" name="text" id="email" placeholder="First Name">
                 <input required="" class="input" type="text" name="text" id="email" placeholder="Last Name">
@@ -22,8 +22,8 @@
             </div>
             <select name="role" id="role">
                 <option value="Role">Role</option>
-                <option value="Seller">Seller</option>
-                <option value="Buyer">Buyer</option>
+                <option value="Seller">Property Owner</option>
+                <option value="Buyer">Renter</option>
             </select>
             <input required="" class="input" type="email" name="email" id="email" placeholder="E-mail">
             <input required="" class="input" type="password" name="password" id="password" placeholder="Password">
@@ -33,6 +33,25 @@
                     style="font-size: 15px;">Login</a></span>
             <input class="login-button" type="submit" value="Create Account">
 
+        </form> -->
+
+        <form id="signup-form" class="form">
+            <div class="names" style="display: flex; gap: 10px;">
+                <input required class="input" type="text" id="first-name" placeholder="First Name">
+                <input required class="input" type="text" id="last-name" placeholder="Last Name">
+            </div>
+
+            <select name="role" id="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="owner">Property Owner</option>
+                <option value="renter">Renter</option>
+            </select>
+
+            <input required class="input" type="email" id="signup-email" placeholder="E-mail">
+            <input required class="input" type="password" id="signup-password" placeholder="Password">
+            <input required class="input" type="password" id="confirm-password" placeholder="Confirm Password">
+
+            <input class="login-button" type="submit" value="Create Account">
         </form>
         <div class="social-account-container">
             <span class="title">Or Sign up with</span>
@@ -44,5 +63,10 @@
         </div>
     </div>
 </body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+<script type="module" src="dbConnection.js"></script>
+<script type="module" src="app.js"></script>
+<script type="module" src="script.js"></script>
+<script type="module" src="auth.js"></script>
 
 </html>

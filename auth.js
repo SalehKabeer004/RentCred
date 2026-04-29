@@ -1,17 +1,71 @@
-import { db } from './dbConnection.js'
+import { supabase } from './dbConnection.js';
+const logoutBtn = document.getElementById('logout-btn');
+// if (logoutBtn) logoutBtn.style.display = "none"; // Hide logout button by default
 
-async function signUpUser(email, password, fullName) {
-    const { data, error } = await db.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-            data: {
-                full_name: fullName,
-                role: 'renter'
+// 1. Signup Logic
+const signupForm = document.getElementById('signup-form');
+if (signupForm) { 
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const role = document.getElementById('role-select').value;
+
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    full_name: `${firstName} ${lastName}`,
+                    user_role: role
+                }
             }
-        }
-    })
+        });
 
-    if (error) console.error("Signup Error:", error.message)
-    else console.log("User registered:", data.user)
+        if (error) alert(error.message);
+        else alert("Signup successful!");
+    });
+}
+
+// 2. Login Logic
+const loginForm = document.getElementById('login-form');
+if (loginForm) { 
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) alert(error.message);
+        else {
+            const logoutBtn = document.getElementById('logout-btn');
+            alert("Login successful!");
+            window.location.href = "index.html";
+            logoutBtn.style.display = "block";
+        }
+    });
+}
+
+//3. Logout Logic
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        const { error } = await supabase.auth.signOut();
+        const logoutBtn = document.getElementById('logout-btn');
+        if (error) alert(error.message);
+        else {
+            alert("Logout successful!");
+            window.location.href = "index.html";
+            logoutBtn.style.display = "none";
+        }
+    });
 }
