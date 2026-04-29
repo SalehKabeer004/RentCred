@@ -131,7 +131,23 @@ body {
   gap: 15px;
   margin-top: 5px;
 }
-
+.social-accounts a{
+      width: 38px;
+    height: 38px;
+    background: #f0f4f8;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.social-accounts a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
 .social-account-container .social-accounts .social-button {
   background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
   border: 5px solid white;

@@ -161,7 +161,23 @@ body {
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
   transition: all 0.2s ease-in-out;
 }
-
+.social-accounts a{
+      width: 38px;
+    height: 38px;
+    background: #f0f4f8;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.social-accounts a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
 .social-account-container .social-accounts .social-button .svg {
   fill: white;
   margin: auto;
