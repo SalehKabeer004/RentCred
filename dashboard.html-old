@@ -17,9 +17,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Rent<span>Cred</span></div>
-            <!-- Navbar (Updated right side) -->
             <div class="nav-right">
-                <span id="role-badge" class="role-badge">Role</span> <!-- Yahan Owner/Renter likha aayega -->
                 <div class="user-avatar-nav" id="nav-avatar">U</div>
                 <span class="nav-username" id="nav-username">User</span>
             </div>
@@ -38,18 +36,9 @@
                 </div>
             </div>
 
-            <!-- Sidebar Menu (Updated for dynamic display) -->
             <ul class="sidebar-menu">
                 <li class="active" data-section="overview">
                     <a href="#"><i class="fas fa-th-large"></i> Overview</a>
-                </li>
-                <!-- Ye link sirf Owner ko dikhega -->
-                <li data-section="properties" id="menu-my-properties" style="display:none;">
-                    <a href="#"><i class="fas fa-home"></i> My Listings</a>
-                </li>
-                <!-- Ye link sirf Renter ko dikhega -->
-                <li data-section="favorites" id="menu-favorites" style="display:none;">
-                    <a href="#"><i class="fas fa-heart"></i> Favorites</a>
                 </li>
                 <li data-section="profile">
                     <a href="#"><i class="fas fa-user-circle"></i> Profile Settings</a>
@@ -73,17 +62,53 @@
                     <div class="header-date" id="header-date">Current Date</div>
                 </header>
 
-                <!-- Overview Stats (Dynamic) -->
-                <div class="stats-grid" id="stat-homes">
-                    <!-- Ye cards JS se change honge -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap blue">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-views">—</h3>
+                            <p>Profile Views</p>
+                        </div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 12%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap green">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-homes">—</h3>
+                            <p>Listed Homes</p>
+                        </div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 2</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap amber">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-rating">—</h3>
+                            <p>User Rating</p>
+                        </div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 0.2</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap purple">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-deals">—</h3>
+                            <p>Active Deals</p>
+                        </div>
+                        <div class="stat-trend neutral"><i class="fas fa-minus"></i> same</div>
+                    </div>
                 </div>
 
                 <div class="activity-section">
-                    <!-- Add Property Button (Sirf Owner ke liye) -->
                     <div class="section-header">
-                        <h2 id="table-title">Recent Activity</h2>
-                        <button class="add-btn" id="add-prop-btn" style="display:none;"><i class="fas fa-plus"></i> Add
-                            Property</button>
+                        <h2>Recent Activity</h2>
+                        <button class="add-btn"><i class="fas fa-plus"></i> Add Property</button>
                     </div>
                     <div class="table-container">
                         <table>
@@ -192,8 +217,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <div class="logo">Rent<span>Cred</span></div>
-                <p>Smart Renting, Better Living. Building trust in the rental marketplace through verified credibility
-                    and community-driven reviews.</p>
+                <p>Smart Renting, Better Living. Building trust in the rental marketplace through verified credibility and community-driven reviews.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -231,35 +255,15 @@
         <div class="footer-bottom">
             <p>&copy; 2026 RentCred. All rights reserved.</p>
         </div>
-    </footer>.
+    </footer>
 
-    <!-- add property modal -->
-    <div id="property-modal" class="custom-modal">
-        <div class="modal-content">
-            <h2>List New Property</h2>
-            <form id="property-form">
-                <input type="text" id="p-title" placeholder="Title (e.g. 2BHK Flat)" required>
-                <div class="form-row">
-                    <input type="number" id="p-price" placeholder="Rent (PKR)" required>
-                    <select id="p-type">
-                        <option value="Apartment">Apartment</option>
-                        <option value="House">House</option>
-                    </select>
-                </div>
-                <input type="file" id="p-featured" accept="image/*" required>
-                <input type="file" id="p-gallery" accept="image/*" multiple>
-                <input type="file" id="p-video" accept="video/*">
-                <button type="submit" class="save-btn">Publish Property</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="dashboard.js"></script>
 
 </body>
 <script type="module" src="dbConnection.js"></script>
-<script type="module" src="app.js"></script>
-<script type="module" src="script.js"></script>
-<script type="module" src="auth.js"></script>
-<script type="module" src="dashboard.js"></script>
-
+    <script type="module" src="app.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="auth.js"></script>
 </html>

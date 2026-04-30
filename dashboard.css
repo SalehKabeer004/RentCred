@@ -541,3 +541,34 @@ tbody tr:hover td { background: #fafbfc; }
     .footer-container { grid-template-columns: 1fr; text-align: center; }
     .social-links { justify-content: center; }
 }
+
+
+/* new styles */
+.role-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.badge-owner { background: #e3f2fd; color: #1976d2; border: 1px solid #1976d2; }
+.badge-renter { background: #f3e5f5; color: #7b1fa2; border: 1px solid #7b1fa2; }
+
+/* Dashboard sections visibility control */
+.dash-section { display: none; }
+.active-section { display: block; }
+
+
+/* Modal default state: Hidden */
+.custom-modal {
+    display: none; /* Bilkul nazar nahi aana chahiye */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Black overlay */
+    justify-content: center;
+    align-items: center;
+}

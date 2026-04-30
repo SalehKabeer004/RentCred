@@ -4,10 +4,10 @@ const logoutBtn = document.getElementById('logout-btn');
 
 // 1. Signup Logic
 const signupForm = document.getElementById('signup-form');
-if (signupForm) { 
+if (signupForm) {
     signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
         const confirmPassword = document.getElementById('confirm-password').value;
@@ -20,13 +20,14 @@ if (signupForm) {
         const lastName = document.getElementById('last-name').value;
         const role = document.getElementById('role').value;
 
+        // Signup logic (Updated)
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
             options: {
                 data: {
                     full_name: `${firstName} ${lastName}`,
-                    user_role: role
+                    user_role: role // 'owner' ya 'renter'
                 }
             }
         });
@@ -38,10 +39,10 @@ if (signupForm) {
 
 // 2. Login Logic
 const loginForm = document.getElementById('login-form');
-if (loginForm) { 
+if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
 
@@ -64,7 +65,7 @@ if (loginForm) {
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        
+
         const { error } = await supabase.auth.signOut();
         const logoutBtn = document.getElementById('logout-btn');
         if (error) alert(error.message);

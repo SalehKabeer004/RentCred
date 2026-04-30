@@ -22,9 +22,9 @@ body {
     overflow-x: hidden;
 }
 
-#logout-btn {
+/* #logout-btn {
     display: none;
-}
+} */
 
 /* Navbar Styling */
 .navbar {
