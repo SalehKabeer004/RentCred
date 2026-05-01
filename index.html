@@ -6,21 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RentCred | Smart Renting, Better Living</title>
     <link rel="stylesheet" href="style.css">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
     <nav class="navbar">
+        <label class="burger" for="burger">
+            <input type="checkbox" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
         <div class="nav-container">
             <div class="logo">Rent<span>Cred</span></div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav_toggle">
                 <li><a href="#browse">Browse Homes</a></li>
                 <li><a href="#rent">Rent</a></li>
                 <li><a href="#post">Post Property</a></li>
             </ul>
-            <div class="nav-auth">
+            <div class="nav-auth" id="nav_toggle_menu_bar">
                 <a id="logout-btn" class="btn-primary">Logout</a>
                 <a href="./login.html" class="login-link">Login</a>
                 <a href="./sign-up.html" class="btn-primary">Sign Up</a>

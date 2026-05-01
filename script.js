@@ -61,13 +61,43 @@ displayProperties();
 // Form toggle logic
 let creat_acount_form = document.getElementById("creat_acount_form")
 let login_form = document.getElementById("login_form")
-function showForm(){
+function showForm() {
     creat_acount_form.style.display = "flex"
     login_form.style.display = "none"
 }
 function login_form_function() {
-        creat_acount_form.style.display = "none"
+    creat_acount_form.style.display = "none"
     login_form.style.display = "flex"
 }
 
+const burger = document.getElementById("burger");
+const nav_toggle = document.getElementById("nav_toggle");
+const nav_btn_menu_bar = document.getElementById("nav_toggle_menu_bar");
 
+let isClick = false;
+
+burger.addEventListener("click", function () {
+    isClick = !isClick; // Flips true to false or false to true
+
+    if (isClick) {
+        console.log("Menu Opened");
+        // Add the active classes
+        nav_toggle.classList.add("set_navbar");
+        nav_btn_menu_bar.classList.add("set_btn");
+    } else {
+        console.log("Menu Closed");
+        // Remove the active classes
+        nav_toggle.classList.remove("set_navbar");
+        nav_btn_menu_bar.classList.remove("set_btn");
+
+        // Add your "closing" animation classes
+        nav_btn_menu_bar.classList.add("set_btn_none");
+        nav_toggle.classList.add("set_navbar_none");
+
+        // Clean up the animation classes after 1 second
+        setTimeout(() => {
+            nav_btn_menu_bar.classList.remove("set_btn_none");
+            nav_toggle.classList.remove("set_navbar_none");
+        }, 1000);
+    }
+});
