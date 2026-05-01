@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentCred — Property Details</title>
+    <link rel="stylesheet" href="post-property.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Rent<span>Cred</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#">Browse</a>
+                <a href="dashboard.html" class="btn-nav">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-bar">
+        <div class="container">
+            <a href="#">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="#">Karachi</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Gulshan-e-Iqbal Apartment</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container page-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+
+            <!-- GALLERY -->
+            <section class="gallery-section">
+                <div class="main-photo" id="main-photo">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="Main Property Photo" id="main-img">
+                    <div class="photo-overlay">
+                        <span class="badge-tag"><i class="fas fa-camera"></i> 8 Photos</span>
+                        <span class="badge-status available">Available Now</span>
+                    </div>
+                    <button class="fav-btn" id="fav-btn" title="Save to Favorites">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="thumb-strip">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=200&q=70" alt="thumb" class="thumb active" onclick="setPhoto(this,'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80')">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=200&q=70" alt="thumb" class="thumb" onclick="setPhoto(this,'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80')">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=70" alt="thumb" class="thumb" onclick="setPhoto(this,'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80')">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=200&q=70" alt="thumb" class="thumb" onclick="setPhoto(this,'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900&q=80')">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=200&q=70" alt="thumb" class="thumb" onclick="setPhoto(this,'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80')">
+                </div>
+            </section>
+
+            <!-- TITLE & META -->
+            <section class="title-section">
+                <div class="title-row">
+                    <div>
+                        <h1 class="prop-title">Gulshan-e-Iqbal Luxury Apartment</h1>
+                        <p class="prop-location"><i class="fas fa-map-marker-alt"></i> Block 13D, Gulshan-e-Iqbal, Karachi</p>
+                    </div>
+                    <div class="rating-chip">
+                        <i class="fas fa-star"></i>
+                        <span>4.8</span>
+                        <span class="rating-count">(24 reviews)</span>
+                    </div>
+                </div>
+                <div class="meta-chips">
+                    <span class="chip"><i class="fas fa-bed"></i> 3 Bedrooms</span>
+                    <span class="chip"><i class="fas fa-bath"></i> 2 Bathrooms</span>
+                    <span class="chip"><i class="fas fa-vector-square"></i> 1,400 sq ft</span>
+                    <span class="chip"><i class="fas fa-building"></i> 4th Floor</span>
+                    <span class="chip"><i class="fas fa-car"></i> Parking</span>
+                </div>
+            </section>
+
+            <!-- DESCRIPTION -->
+            <section class="card-section">
+                <h2 class="section-title">About this Property</h2>
+                <p class="desc-text">
+                    Yeh ek fully furnished luxury apartment hai jo Karachi ke behtareen residential area mein waqe hai.
+                    Apartment mein modern kitchen, spacious living room, aur khubsoorat city view hai.
+                    Tamam utilities (bijli, paani, gas) included hain. Building mein 24/7 security, backup generator,
+                    aur maintenance staff available hai.
+                </p>
+                <p class="desc-text" style="margin-top:10px;">
+                    Family aur professionals dono ke liye ideal location — schools, hospitals, shopping centers
+                    qareeb hain. Public transport easily accessible hai.
+                </p>
+            </section>
+
+            <!-- AMENITIES -->
+            <section class="card-section">
+                <h2 class="section-title">Amenities</h2>
+                <div class="amenities-grid">
+                    <div class="amenity-item"><i class="fas fa-wifi"></i><span>High-Speed WiFi</span></div>
+                    <div class="amenity-item"><i class="fas fa-snowflake"></i><span>Air Conditioning</span></div>
+                    <div class="amenity-item"><i class="fas fa-fire"></i><span>Gas Geyser</span></div>
+                    <div class="amenity-item"><i class="fas fa-tv"></i><span>Cable TV</span></div>
+                    <div class="amenity-item"><i class="fas fa-car"></i><span>Dedicated Parking</span></div>
+                    <div class="amenity-item"><i class="fas fa-shield-alt"></i><span>24/7 Security</span></div>
+                    <div class="amenity-item"><i class="fas fa-bolt"></i><span>Backup Generator</span></div>
+                    <div class="amenity-item"><i class="fas fa-water"></i><span>Water Tank</span></div>
+                    <div class="amenity-item"><i class="fas fa-broom"></i><span>Maintenance Staff</span></div>
+                    <div class="amenity-item"><i class="fas fa-elevator"></i><span>Elevator</span></div>
+                    <div class="amenity-item"><i class="fas fa-couch"></i><span>Furnished</span></div>
+                    <div class="amenity-item"><i class="fas fa-box"></i><span>Storage Room</span></div>
+                </div>
+            </section>
+
+            <!-- MAP -->
+            <section class="card-section">
+                <h2 class="section-title"><i class="fas fa-map-marker-alt" style="color:var(--secondary)"></i> Location</h2>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.4!2d67.0822!3d24.9215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e06651d4bbf%3A0x9cf92f44555a0c23!2sGulshan-e-Iqbal%2C%20Karachi!5e0!3m2!1sen!2spk!4v1"
+                        width="100%" height="300" style="border:0;border-radius:10px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="nearby-tags">
+                    <span><i class="fas fa-graduation-cap"></i> Schools nearby</span>
+                    <span><i class="fas fa-hospital"></i> Hospital 2km</span>
+                    <span><i class="fas fa-shopping-cart"></i> Mall 1.5km</span>
+                    <span><i class="fas fa-bus"></i> Bus stop 5 min walk</span>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right-col">
+
+            <!-- PRICE CARD -->
+            <div class="sticky-card">
+                <div class="price-card card-section">
+                    <div class="price-header">
+                        <div class="price-main">
+                            <span class="price-amount">PKR 85,000</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <span class="price-deposit">Deposit: PKR 1,70,000</span>
+                    </div>
+
+                    <div class="availability-row">
+                        <div class="avail-item">
+                            <label>Available From</label>
+                            <span>May 15, 2026</span>
+                        </div>
+                        <div class="avail-item">
+                            <label>Min. Stay</label>
+                            <span>6 Months</span>
+                        </div>
+                        <div class="avail-item">
+                            <label>Type</label>
+                            <span>Residential</span>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- CONTACT OWNER FORM -->
+                    <h3 class="form-title">Contact Owner</h3>
+
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="contact-name" placeholder="Ali Hassan" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="contact-phone" placeholder="+92 300 1234567" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="contact-email" placeholder="ali@email.com" />
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="contact-msg" rows="3" placeholder="Is property ke baare mein baat karna chahta hoon..."></textarea>
+                    </div>
+
+                    <button class="contact-btn" id="contact-submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                    <div id="contact-success" class="success-msg" style="display:none;">
+                        <i class="fas fa-check-circle"></i> Message bhej diya gaya! Owner jald rabita karega.
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="owner-row">
+                        <div class="owner-avatar">A</div>
+                        <div class="owner-info">
+                            <p class="owner-name">Ahmed Malik</p>
+                            <p class="owner-badge"><i class="fas fa-shield-alt"></i> Verified Owner</p>
+                        </div>
+                        <a href="tel:+923001234567" class="call-btn"><i class="fas fa-phone"></i> Call</a>
+                    </div>
+                </div>
+
+                <!-- SHARE / REPORT -->
+                <div class="action-links">
+                    <button onclick="shareProperty()"><i class="fas fa-share-alt"></i> Share</button>
+                    <button><i class="fas fa-flag"></i> Report</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">Rent<span>Cred</span></div>
+                <p>Smart Renting, Better Living. Building trust in the rental marketplace through verified credibility
+                    and community-driven reviews.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Safety</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to get the latest listings.</p>
+                <div class="footer-subscribe">
+                    <input type="email" placeholder="Email Address">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 RentCred. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // ── Gallery ──
+        function setPhoto(thumb, url) {
+            document.getElementById('main-img').src = url;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        }
+
+        // ── Favorites ──
+        const favBtn = document.getElementById('fav-btn');
+        let isFav = false;
+        favBtn.addEventListener('click', () => {
+            isFav = !isFav;
+            favBtn.innerHTML = isFav
+                ? '<i class="fas fa-heart" style="color:#e74c3c"></i>'
+                : '<i class="far fa-heart"></i>';
+            favBtn.classList.toggle('active', isFav);
+        });
+
+        // ── Contact Form ──
+        document.getElementById('contact-submit').addEventListener('click', () => {
+            const name  = document.getElementById('contact-name').value.trim();
+            const phone = document.getElementById('contact-phone').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const msg   = document.getElementById('contact-msg').value.trim();
+
+            if (!name || !phone || !email) {
+                alert('Apna naam, phone aur email zaroor fill karein.');
+                return;
+            }
+
+            // Simulate send
+            const btn = document.getElementById('contact-submit');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.style.display = 'none';
+                document.getElementById('contact-success').style.display = 'flex';
+                document.getElementById('contact-name').value = '';
+                document.getElementById('contact-phone').value = '';
+                document.getElementById('contact-email').value = '';
+                document.getElementById('contact-msg').value = '';
+            }, 1500);
+        });
+
+        // ── Share ──
+        function shareProperty() {
+            if (navigator.share) {
+                navigator.share({ title: 'RentCred Property', url: window.location.href });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            }
+        }
+
+        // ── Current date in breadcrumb ──
+        const today = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
+    </script>
+</body>
+</html>
