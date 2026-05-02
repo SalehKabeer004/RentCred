@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Properties</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="browse.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="browse-page">
+    <nav class="navbar">
+        <label class="burger" for="burger">
+            <input type="checkbox" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <div class="nav-container">
+            <div class="logo">Rent<span>Cred</span></div>
+            <ul class="nav-menu" id="nav_toggle">
+                <li><a href="/">Home</a></li>
+                <li><a href="/browse.html">Properties</a></li>
+                <li><a href="/dashboard.html">Add Property</a></li>
+            </ul>
+            <div class="nav-auth" id="nav_toggle_menu_bar">
+                <a id="logout-btn" class="btn-primary">Logout</a>
+                <a href="./login.html" class="login-link">Login</a>
+                <a href="./sign-up.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+    <section class="section">
+        <header class="browse-hero ">
+            <div class="browse-hero-text">
+                <h1>Search Properties</h1>
+            </div>
+
+            <div class="search-panel">
+                <div class="search-grid">
+                    <!-- Location -->
+                    <div class="search-item">
+                        <label><i class="fas fa-location-dot"></i> Location</label>
+                        <input list="locations" id="main-search-loc" placeholder="Where are you looking?"
+                            class="search-input">
+                        <datalist id="locations">
+                            <option value="Karachi">
+                            <option value="Lahore">
+                            <option value="Islamabad">
+                        </datalist>
+                    </div>
+
+                    <!-- Property Type -->
+                    <div class="search-item">
+                        <label><i class="fas fa-house"></i> Property Type</label>
+                        <select id="main-search-type">
+                            <option selected value="All">All Types</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="House">House</option>
+                            <option value="Studio">Studio</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range Slider -->
+                    <div class="search-item">
+                        <label><i class="fas fa-tags"></i> Price Range: <span id="price-label">PKR 0 -
+                                500k+</span></label>
+                        <!-- <div class="range-slider-container"> -->
+                        <div class="slider-track">
+                            <div style="display: flex; justify-content: space-around;">
+                                <label for="price-min">Min</label>
+                                <input type="range" min="0" max="500000" value="0" id="price-min" step="5000">
+                            </div>
+                            <div style="display: flex; justify-content: space-around;">
+                                <label for="price-max">Max</label>
+                                <input type="range" min="0" max="500000" value="500000" id="price-max" step="5000">
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+
+                    <button class="btn-search" id="execute-search">Search Properties</button>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <!-- Cards Yahan Load Hongay -->
+    <section class="section">
+        <div class="section-header">
+            <h2>Filtered Properties</h2>
+            <p>Discover verified properties from trusted owners with excellent scores.</p>
+        </div>
+        <div class="grid-container" id="property-list">
+            <!-- Cards will be injected here -->
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">Rent<span>Cred</span></div>
+                <p>Smart Renting, Better Living. Building trust in the rental marketplace through verified credibility
+                    and community-driven reviews.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Safety</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to get the latest listings.</p>
+                <div class="footer-subscribe">
+                    <input type="email" placeholder="Email Address">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 RentCred. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+<script type="module" src="dbConnection.js"></script>
+<script type="module" src="app.js"></script>
+<script type="module" src="script.js"></script>
+<script type="module" src="auth.js"></script>
+<script type="module" src="browse.js"></script>
+<script type="module" src="searchHandler.js"></script>
+
+</html>

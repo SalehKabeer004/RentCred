@@ -28,7 +28,7 @@ const propertyData = [
     }
 ];
 
-const propertyList = document.getElementById('property-list');
+const propertyList = document.getElementById('featured-property-list');
 
 function displayProperties() {
     propertyData.forEach(prop => {

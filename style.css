@@ -198,177 +198,105 @@ body {
 }
 
 /* Search Panel */
+/* 1. Container Fix */
 .search-panel {
-    background: var(--white);
-    padding: 30px;
+    background: #ffffff;
     border-radius: 15px;
-    box-shadow: var(--shadow);
-    width: 100%;
-    max-width: 1000px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 95%;
+    /* margin: -50px auto 20px; */
+    position: relative;
+    z-index: 100;
 }
 
-.search-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    align-items: flex-end;
-}
-
-.search-item {
-    text-align: left;
-}
-
-.search-item label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
+.search-panel i {
     color: var(--primary);
-    margin-bottom: 8px;
 }
 
-.search-item label i {
-    color: var(--secondary)
+/* 2. Flex Grid Fix */
+.search-grid {
+    display: flex;
+    flex-wrap: wrap; /* Jab jagah kam ho to niche shift ho jaye */
+    align-items: flex-end;
+    gap: 15px;
 }
 
+/* 3. Item logic - Shrink aur Growth ko handle karna */
+.search-item {
+    flex: 1 1 200px; /* Grow kare, shrink kare, lekin base 200px rakhe */
+    min-width: 0;    /* CSS Flexbox ka fix taake content shrink ho sake */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 4. Inputs aur Selects ko 100% responsive banana */
+.search-input, 
 .search-item select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    outline: none;
-    background: #fafafa;
+    box-sizing: border-box; /* Padding ko width ke andar rakhega */
+    height: 45px;
+    padding: 0 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
 }
 
+/* 5. Slider Fix - Jo screenshot mein toota hua hai */
+.range-slider-container {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+/* Slider track fix taake thumbs ke sath sahi alignment mein rahe */
+.slider-track {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.slider-track label {
+    font-size: 14px;
+}
+
+/* Search Button logic */
 .btn-search {
-    background: var(--primary);
+    flex: 0 0 auto; /* Button shrink nahi hoga */
+    height: 45px;
+    padding: 0 30px;
+    background: #003d73;
     color: white;
     border: none;
-    padding: 15px;
-    border-radius: 6px;
-    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-search:hover {
-    background: var(--secondary);
-}
-
-/* Property Grid */
-.section {
-    padding: 80px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    color: var(--primary);
-}
-
-.section-header p {
-    font-size: 1.1rem;
-    color: #666;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-/* Property Card */
-.card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: 0.4s;
-    position: relative;
-    border: 1px solid #f0f0f0;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow);
-}
-
-.card-img-wrapper {
-    position: relative;
-    height: 220px;
-}
-
-.card-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.tag-score {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: var(--primary);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
     font-weight: 600;
 }
 
-.tag-verified {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--accent);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
+/* 6. Media Queries for Mobile/Tablet */
+
+@media (max-width: 768px) {
+    .search-item {
+        flex: 1 1 calc(50% - 15px); /* Tablet par 2 columns */
+    }
 }
 
-.card-body {
-    padding: 20px;
-}
-
-.card-body h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    color: var(--primary);
-}
-
-.card-price {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 10px;
-}
-
-.card-loc {
-    color: var(--primary);
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-}
-
-.card-loc i,
-.card-footer i {
-    color: var(--secondary);
-    margin-right: 5px;
-}
-
-.card-footer {
-    border-top: 1px solid #eee;
-    padding-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--primary);
+@media (max-width: 480px) {
+    .search-panel {
+        padding: 15px;
+    }
+    
+    .search-item {
+        flex: 1 1 100%; /* Mobile par sab ek line mein */
+    }
+    
+    .btn-search {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
 
 /* --- TRUST SECTION STYLING --- */
