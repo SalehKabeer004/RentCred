@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RentCred — Property Details</title>
     <link rel="stylesheet" href="post-property.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,18 +13,29 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
+        <label class="burger" for="burger">
+            <input type="checkbox" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
         <div class="nav-container">
-            <a href="index.html" class="logo">Rent<span>Cred</span></a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#">Browse</a>
-                <a href="dashboard.html" class="btn-nav">Dashboard</a>
+            <div class="logo">Rent<span>Cred</span></div>
+            <ul class="nav-menu" id="nav_toggle">
+                <li><a href="/">Home</a></li>
+                <li><a href="/browse.html">Properties</a></li>
+                <li><a href="/dashboard.html">Add Property</a></li>
+            </ul>
+            <div class="nav-auth" id="nav_toggle_menu_bar">
+                <a id="logout-btn" class="btn-primary">Logout</a>
+                <a href="./login.html" class="login-link">Login</a>
+                <a href="./sign-up.html" class="btn-primary">Sign Up</a>
             </div>
         </div>
     </nav>
 
     <!-- BREADCRUMB -->
-    <div class="breadcrumb-bar">
+    <!-- <div class="breadcrumb-bar">
         <div class="container">
             <a href="#">Home</a>
             <i class="fas fa-chevron-right"></i>
@@ -31,7 +43,7 @@
             <i class="fas fa-chevron-right"></i>
             <span>Gulshan-e-Iqbal Apartment</span>
         </div>
-    </div>
+    </div> -->
 
     <!-- MAIN CONTENT -->
     <div class="container page-grid">
@@ -64,8 +76,8 @@
             <section class="title-section">
                 <div class="title-row">
                     <div>
-                        <h1 class="prop-title">Gulshan-e-Iqbal Luxury Apartment</h1>
-                        <p class="prop-location"><i class="fas fa-map-marker-alt"></i> Block 13D, Gulshan-e-Iqbal, Karachi</p>
+                        <h1 class="prop-title"></h1>
+                        <p class="prop-location"><i class="fas fa-map-marker-alt"></i></p>
                     </div>
                     <div class="rating-chip">
                         <i class="fas fa-star"></i>
@@ -86,14 +98,10 @@
             <section class="card-section">
                 <h2 class="section-title">About this Property</h2>
                 <p class="desc-text">
-                    Yeh ek fully furnished luxury apartment hai jo Karachi ke behtareen residential area mein waqe hai.
-                    Apartment mein modern kitchen, spacious living room, aur khubsoorat city view hai.
-                    Tamam utilities (bijli, paani, gas) included hain. Building mein 24/7 security, backup generator,
-                    aur maintenance staff available hai.
+                    
                 </p>
                 <p class="desc-text" style="margin-top:10px;">
-                    Family aur professionals dono ke liye ideal location — schools, hospitals, shopping centers
-                    qareeb hain. Public transport easily accessible hai.
+                    
                 </p>
             </section>
 
@@ -325,4 +333,11 @@
         const today = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
     </script>
 </body>
+<script type="module" src="dbConnection.js"></script>
+<script type="module" src="app.js"></script>
+<script type="module" src="script.js"></script>
+<script type="module" src="auth.js"></script>
+<script type="module" src="browse.js"></script>
+<script type="module" src="searchHandler.js"></script>
+<script type="module" src="property-details.js"></script>
 </html>

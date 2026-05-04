@@ -27,7 +27,6 @@
     </nav>
 
     <div class="dashboard-wrapper">
-
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-profile">
@@ -38,16 +37,13 @@
                 </div>
             </div>
 
-            <!-- Sidebar Menu (Updated for dynamic display) -->
             <ul class="sidebar-menu">
                 <li class="active" data-section="overview">
                     <a href="#"><i class="fas fa-th-large"></i> Overview</a>
                 </li>
-                <!-- Ye link sirf Owner ko dikhega -->
                 <li data-section="properties" id="menu-my-properties" style="display:none;">
                     <a href="#"><i class="fas fa-home"></i> My Listings</a>
                 </li>
-                <!-- Ye link sirf Renter ko dikhega -->
                 <li data-section="favorites" id="menu-favorites" style="display:none;">
                     <a href="#"><i class="fas fa-heart"></i> Favorites</a>
                 </li>
@@ -73,47 +69,23 @@
                     <div class="header-date" id="header-date">Current Date</div>
                 </header>
 
-                <!-- Overview Stats (Dynamic) -->
                 <div class="stats-grid" id="stat-homes">
-                    <!-- Ye cards JS se change honge -->
+                    <!-- JS se Cards yahan inject honge -->
                 </div>
 
                 <div class="activity-section">
-                    <!-- Add Property Button (Sirf Owner ke liye) -->
                     <div class="section-header">
                         <h2 id="table-title">Recent Activity</h2>
                         <button class="add-btn" id="add-prop-btn" style="display:none;"><i class="fas fa-plus"></i> Add
                             Property</button>
                     </div>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Property</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="activity-tbody">
-                                <tr>
-                                    <td>Gulshan Apartment</td>
-                                    <td>Oct 12, 2026</td>
-                                    <td><span class="status active">Active</span></td>
-                                    <td><button class="edit-btn"><i class="fas fa-pen"></i> Edit</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Defence Villa</td>
-                                    <td>Oct 10, 2026</td>
-                                    <td><span class="status pending">Pending</span></td>
-                                    <td><button class="edit-btn"><i class="fas fa-pen"></i> Edit</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div id="activity-tbody">
+                        <!-- JS se Data yahan inject hoga -->
                     </div>
                 </div>
             </section>
 
+            <!-- MY PROPERTIES SECTION (Fixed IDs) -->
             <!-- MY PROPERTIES SECTION -->
             <section id="section-properties" class="dash-section">
                 <header class="welcome-banner">
@@ -122,11 +94,43 @@
                         <p>Apni saari listed properties yahan dekh aur manage kar sakte hain.</p>
                     </div>
                 </header>
-                <div class="empty-state">
-                    <i class="fas fa-home"></i>
-                    <h3>Koi property listed nahi hai</h3>
-                    <p>Pehli property list karne ke liye + Add Property button click karein.</p>
-                    <button class="add-btn-lg"><i class="fas fa-plus"></i> Add Property</button>
+
+                <div class="content-body"
+                    style="background: white; border-radius: 12px; padding: 30px; margin-top: 20px; min-height: 300px; display: flex; align-items: center; justify-content: center;">
+
+                    <!-- EMPTY STATE: Ye tab dikhega jab list khali hogi -->
+                    <div id="empty-state-properties" class="empty-state" style="text-align: center;">
+                        <div style="font-size: 60px; color: #cbd5e0; margin-bottom: 15px;">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 style="color: #2d3748; margin-bottom: 10px;">Koi property listed nahi hai</h3>
+                        <p style="color: #718096; margin-bottom: 25px;">Pehli property list karne ke liye niche wala
+                            button click karein.</p>
+                        <button class="add-btn-lg" id="add-prop-btn-empty"
+                            style="background: #003366; color: white; padding: 12px 30px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-plus"></i> Add Property
+                        </button>
+                    </div>
+
+                    <!-- LISTINGS TABLE: Ye shuru mein hidden rahegi -->
+                    <div id="listing-table-container" style="display: none; width: 100%;">
+                        <div class="table-container">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead style="background: #f8fafc;">
+                                    <tr style="text-align: left; border-bottom: 2px solid #edf2f7;">
+                                        <th style="padding: 15px;">Property</th>
+                                        <th style="padding: 15px;">City</th>
+                                        <th style="padding: 15px;">Status</th>
+                                        <th style="padding: 15px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="properties-tbody">
+                                    <!-- JS Data yahan ayega -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -183,7 +187,6 @@
                     </div>
                 </div>
             </section>
-
         </main>
     </div>
 
@@ -236,20 +239,82 @@
     <!-- add property modal -->
     <div id="property-modal" class="custom-modal">
         <div class="modal-content">
-            <h2>List New Property</h2>
+            <h2><i class="fas fa-plus-circle"></i> List New Property</h2>
             <form id="property-form">
-                <input type="text" id="p-title" placeholder="Title (e.g. 2BHK Flat)" required>
+                <!-- Basic Info -->
+                <input type="text" id="p-title" placeholder="Property Title (e.g. 2BHK Luxury Flat)" required>
+                <textarea id="p-desc" placeholder="Detailed Description" rows="3"></textarea>
+
                 <div class="form-row">
-                    <input type="number" id="p-price" placeholder="Rent (PKR)" required>
+                    <input type="number" id="p-price" placeholder="Monthly Rent (PKR)" required>
+                    <input type="number" id="p-deposit" placeholder="Security Deposit (PKR)">
+                </div>
+
+                <div class="form-row">
                     <select id="p-type">
                         <option value="Apartment">Apartment</option>
                         <option value="House">House</option>
+                        <option value="Studio">Studio</option>
+                        <option value="Room">Room</option>
                     </select>
+                    <input type="text" id="p-phone" placeholder="Contact Number (Property)" required>
                 </div>
-                <input type="file" id="p-featured" accept="image/*" required>
-                <input type="file" id="p-gallery" accept="image/*" multiple>
-                <input type="file" id="p-video" accept="video/*">
-                <button type="submit" class="save-btn">Publish Property</button>
+
+                <!-- Location -->
+                <div class="form-row">
+                    <input type="text" id="p-area" placeholder="Location Area (e.g. DHA Phase 6)" required>
+                    <input type="text" id="p-city" placeholder="City (e.g. Karachi)" required>
+                </div>
+
+                <!-- Detailed Specs -->
+                <div class="form-row">
+                    <input type="number" id="p-beds" placeholder="Bedrooms">
+                    <input type="number" id="p-baths" placeholder="Bathrooms">
+                </div>
+
+                <div class="form-row">
+                    <input type="number" id="p-sqft" placeholder="Area (Sq. Ft)">
+                    <input type="number" id="p-floor" placeholder="Floor Number">
+                </div>
+
+                <div class="form-row">
+                    <input type="date" id="p-available" title="Available From">
+                    <input type="text" id="p-minstay" placeholder="Min. Stay (e.g. 6 Months)">
+                </div>
+
+                <!-- Boolean & Features -->
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="p-parking"> Dedicated Parking</label>
+                </div>
+
+                <div class="amenities-box">
+                    <p>Amenities (Select all that apply):</p>
+                    <div class="amenities-list" id="p-amenities">
+                        <label><input type="checkbox" value="WiFi"> WiFi</label>
+                        <label><input type="checkbox" value="Elevator"> Elevator</label>
+                        <label><input type="checkbox" value="Generator"> Generator</label>
+                        <label><input type="checkbox" value="Security"> 24/7 Security</label>
+                        <label><input type="checkbox" value="Kitchen"> Modular Kitchen</label>
+                        <label><input type="checkbox" value="Gym"> Gym</label>
+                    </div>
+                </div>
+
+                <!-- Media -->
+                <div class="media-upload">
+                    <label>Featured Image (Main View):</label>
+                    <input type="file" id="p-featured" accept="image/*" required>
+
+                    <label>Gallery Images (Multiple):</label>
+                    <input type="file" id="p-gallery" accept="image/*" multiple>
+
+                    <label>Video Tour (Optional):</label>
+                    <input type="file" id="p-video" accept="video/*">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="save-btn" id="publish-btn">Publish Property</button>
+                    <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                </div>
             </form>
         </div>
     </div>
