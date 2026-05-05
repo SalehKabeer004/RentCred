@@ -25,12 +25,12 @@ async function loadPropertyDetails() {
     // --- 1. GALLERY & IMAGES ---
     const mainImg = document.getElementById('main-img');
     mainImg.src = prop.featured_image || 'assets/placeholder-img.jpg';
-    
+
     // Badge updates
     const photoBadge = document.querySelector('.badge-tag');
     const totalPhotos = (prop.images_urls?.length || 0) + 1;
     photoBadge.innerHTML = `<i class="fas fa-camera"></i> ${totalPhotos} Photos`;
-    
+
     const statusBadge = document.querySelector('.badge-status');
     statusBadge.innerText = prop.status || 'Status Not Found';
     statusBadge.className = `badge-status ${prop.status?.toLowerCase() || 'unknown'}`;
@@ -96,16 +96,23 @@ async function loadPropertyDetails() {
 
     // --- 7. MAP (Optional Update) ---
     // Agar aap map ko dynamic karna chahte hain to location_area ko query mein dalein
+    // const mapIframe = document.querySelector('.map-container iframe');
+    // if (mapIframe && prop.location_area) {
+    //     const mapQuery = encodeURIComponent(`${prop.location_area}, ${prop.location_city}`);
+    //     mapIframe.src = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY_HERE&q=${mapQuery}`;
+    //     // Note: Embed API use karne ke liye API key chahiye hoti hai, warna default Karachi wala hi rahega.
+    // }
+
     const mapIframe = document.querySelector('.map-container iframe');
     if (mapIframe && prop.location_area) {
+        // Is link mein API Key ki zaroorat nahi hoti
         const mapQuery = encodeURIComponent(`${prop.location_area}, ${prop.location_city}`);
-        mapIframe.src = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY_HERE&q=${mapQuery}`;
-        // Note: Embed API use karne ke liye API key chahiye hoti hai, warna default Karachi wala hi rahega.
+        mapIframe.src = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
     }
 }
 
 // Global photo setter
-window.setPhoto = function(thumb, url) {
+window.setPhoto = function (thumb, url) {
     const mainImg = document.getElementById('main-img');
     if (mainImg) mainImg.src = url;
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));

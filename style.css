@@ -301,7 +301,7 @@ body {
 
 /* --- TRUST SECTION STYLING --- */
 .trust-section {
-    padding: 100px 5%;
+    padding: 0px 5% 100px 5%;
     background-color: var(--white);
     text-align: center;
     max-width: 1200px;

@@ -863,3 +863,60 @@ textarea#p-desc {
     .form-row { grid-template-columns: 1fr; }
     .modal-content { width: 95%; padding: 20px; }
 }
+
+
+/* Container ko relative rakhna zaroori hai */
+.manage-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Manage Button Styling */
+.manage-btn-trigger {
+    background: #4A90E2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Dropdown Menu - Table ke upar dikhane ke liye */
+.manage-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    z-index: 999; /* Table row se upar */
+    border: 1px solid #edf2f7;
+}
+
+.manage-dropdown.show {
+    display: block;
+}
+
+.manage-dropdown a {
+    display: block;
+    padding: 10px 15px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.manage-dropdown a:hover {
+    background: #f7fafc;
+}
+
+.manage-dropdown a i {
+    margin-right: 8px;
+    width: 14px;
+}
+
+.text-danger { color: #e53e3e !important; }
+

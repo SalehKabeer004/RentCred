@@ -106,6 +106,30 @@ async function setupOwnerDashboard(userId) {
 }
 
 // Function: My Listings Table
+// function renderMyListings(properties) {
+//     const emptyState = document.getElementById('empty-state-properties');
+//     const tableContainer = document.getElementById('listing-table-container');
+//     const tbody = document.getElementById('properties-tbody');
+
+//     if (properties && properties.length > 0) {
+//         emptyState.style.display = 'none';
+//         tableContainer.style.display = 'block';
+
+//         tbody.innerHTML = properties.map(p => `
+//             <tr style="border-bottom: 1px solid #edf2f7;">
+//                 <td style="padding: 15px; font-weight: 500;">${p.title}</td>
+//                 <td style="padding: 15px;">${p.city || 'N/A'}</td>
+//                 <td style="padding: 15px;"><span class="status active" style="background: #e6fffa; color: #234e52; padding: 4px 10px; border-radius: 20px; font-size: 12px;">Active</span></td>
+//                 <td style="padding: 15px;"><button class="edit-btn">Manage</button></td>
+                
+//             </tr>
+//         `).join('');
+//     } else {
+//         emptyState.style.display = 'block';
+//         tableContainer.style.display = 'none';
+//     }
+// }
+
 function renderMyListings(properties) {
     const emptyState = document.getElementById('empty-state-properties');
     const tableContainer = document.getElementById('listing-table-container');
@@ -115,19 +139,104 @@ function renderMyListings(properties) {
         emptyState.style.display = 'none';
         tableContainer.style.display = 'block';
 
-        tbody.innerHTML = properties.map(p => `
-            <tr style="border-bottom: 1px solid #edf2f7;">
-                <td style="padding: 15px; font-weight: 500;">${p.title}</td>
-                <td style="padding: 15px;">${p.city || 'N/A'}</td>
-                <td style="padding: 15px;"><span class="status active" style="background: #e6fffa; color: #234e52; padding: 4px 10px; border-radius: 20px; font-size: 12px;">Active</span></td>
-                <td style="padding: 15px;"><button class="edit-btn">Manage</button></td>
-            </tr>
-        `).join('');
+        tbody.innerHTML = properties.map(p => {
+            // Status color logic
+            const statusStyle = p.status === 'Active' 
+                ? 'background: #e6fffa; color: #234e52;' 
+                : 'background: #fff5f5; color: #c53030;';
+
+            return `
+                <tr style="border-bottom: 1px solid #edf2f7;">
+                    <td style="padding: 15px; font-weight: 500;">${p.title}</td>
+                    <td style="padding: 15px;">${p.location_city || 'N/A'}</td>
+                    <td style="padding: 15px;">
+                        <span style="${statusStyle} padding: 4px 10px; border-radius: 20px; font-size: 12px;">
+                            ${p.status || 'Active'}
+                        </span>
+                    </td>
+                    <td style="padding: 15px;">
+                        <div class="manage-wrapper">
+                            <button class="manage-btn-trigger" onclick="toggleManageMenu(event, '${p.id}')">
+                                Manage <i class="fas fa-caret-down"></i>
+                            </button>
+                            <div id="dropdown-${p.id}" class="manage-dropdown">
+                                <a href="#" onclick="editListing('${p.id}')">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="#" onclick="updatePropertyStatus('${p.id}', 'Rented')">
+                                    <i class="fas fa-check-circle"></i> Mark Rented
+                                </a>
+                                <a href="#" onclick="updatePropertyStatus('${p.id}', 'Hidden')">
+                                    <i class="fas fa-eye-slash"></i> Hide
+                                </a>
+                                <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 4px 0;">
+                                <a href="#" class="text-danger" onclick="deleteListing('${p.id}')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
     } else {
         emptyState.style.display = 'block';
         tableContainer.style.display = 'none';
     }
 }
+
+// Dropdown toggle karne ke liye
+// 1. Toggle Menu ko Global scope mein dalein
+window.toggleManageMenu = function(event, id) {
+    event.stopPropagation();
+    
+    // Saare dropdowns pehle band karein
+    document.querySelectorAll('.manage-dropdown').forEach(el => {
+        if (el.id !== `dropdown-${id}`) el.classList.remove('show');
+    });
+
+    // Target dropdown ko toggle karein
+    const currentDropdown = document.getElementById(`dropdown-${id}`);
+    if (currentDropdown) {
+        currentDropdown.classList.toggle('show');
+    }
+};
+
+// 2. Status Update function ko Global dalein
+window.updatePropertyStatus = async function(id, newStatus) {
+    const { error } = await supabase
+        .from('properties')
+        .update({ status: newStatus })
+        .eq('id', id);
+
+    if (error) {
+        alert("Update failed: " + error.message);
+    } else {
+        // UI refresh karne ke liye apna fetch function call karein
+        if (typeof fetchUserListings === 'function') fetchUserListings();
+    }
+};
+
+// 3. Delete function ko Global dalein
+window.deleteListing = async function(id) {
+    if (confirm("Are you sure you want to delete this listing?")) {
+        const { error } = await supabase
+            .from('properties')
+            .delete()
+            .eq('id', id);
+        
+        if (!error) {
+            if (typeof fetchUserListings === 'function') fetchUserListings();
+        } else {
+            alert("Delete failed: " + error.message);
+        }
+    }
+};
+
+// 4. Click outside to close logic
+window.addEventListener('click', function() {
+    document.querySelectorAll('.manage-dropdown').forEach(el => el.classList.remove('show'));
+});
 
 // Function: Leads Table
 function renderLeadsTable(leads) {
