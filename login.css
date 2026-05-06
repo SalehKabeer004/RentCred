@@ -16,16 +16,15 @@
 }
 
 body {
+  background: linear-gradient(rgba(0, 51, 102, 0.6), rgba(0, 51, 102, 0.1)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1175&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  font-family: "Montserrat", sans-serif;
-  line-height: 1.6;
-  color: #333;
-  overflow-x: hidden;
-  background-color: var(--bg-light);
+  font-family: sans-serif;
 }
 
 
@@ -46,7 +45,7 @@ body {
   text-align: center;
   font-weight: 900;
   font-size: 30px;
-  color:var(--secondary);
+  color: var(--secondary);
 }
 
 .form {
@@ -58,7 +57,8 @@ body {
   background: white;
   border: none;
   padding: 15px 20px;
-  border-radius: 20px;
+  border-radius: 15px;
+
   margin-top: 15px;
   box-shadow: #cff0ff 0px 10px 10px -5px;
   border-inline: 2px solid transparent;
@@ -72,15 +72,16 @@ body {
   color: rgb(170, 170, 170);
 }
 
-.form .input:focus {
-  outline: none;
-  border-inline: 2px solid #12B1D1;
-}
 
 .form .forgot-password {
   display: block;
   margin-top: 10px;
   margin-left: 10px;
+}
+.form .sign_in_page{
+    display: block;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .form .forgot-password a {
@@ -88,7 +89,11 @@ body {
   color: #0099ff;
   text-decoration: none;
 }
-
+.form .sign_in_page a{
+    font-size: 13px;
+  color: #0099ff;
+  text-decoration: none;
+}
 .form .login-button {
   display: block;
   width: 100%;
@@ -97,7 +102,8 @@ body {
   color: white;
   padding-block: 15px;
   margin: 20px auto;
-  border-radius: 20px;
+  border-radius: 15px;
+
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
   border: none;
   transition: all 0.2s ease-in-out;
@@ -131,23 +137,26 @@ body {
   gap: 15px;
   margin-top: 5px;
 }
-.social-accounts a{
-      width: 38px;
-    height: 38px;
-    background: #f0f4f8;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: all 0.3s ease;
+
+.social-accounts a {
+  width: 38px;
+  height: 38px;
+  background: #f0f4f8;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
+
 .social-accounts a:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-3px);
+  background: var(--primary);
+  color: white;
+  transform: translateY(-3px);
 }
+
 .social-account-container .social-accounts .social-button {
   background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
   border: 5px solid white;

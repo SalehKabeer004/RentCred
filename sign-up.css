@@ -13,24 +13,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  font-family: "Montserrat", sans-serif;
-  line-height: 1.6;
-  color: #333;
-  overflow-x: hidden;
-  background-color: var(--bg-light);
+      background: linear-gradient(rgba(0, 51, 102, 0.6), rgba(0, 51, 102, 0.1)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1175&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
 
-/* From Uiverse.io by Smit-Prajapati */
 .container {
   max-width: 600px;
   background: #F8F9FD;
@@ -89,10 +87,7 @@ body {
   color: rgb(170, 170, 170);
 }
 
-.form .input:focus {
-  outline: none;
-  border-inline: 2px solid #12B1D1;
-}
+
 
 .form .forgot-password {
   display: block;
@@ -189,4 +184,16 @@ body {
 
 .social-account-container .social-accounts .social-button:active {
   transform: scale(0.9);
+}
+
+
+.form .sign_in_page{
+    display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.form .sign_in_page a{
+    font-size: 13px;
+  color: #0099ff;
+  text-decoration: none;
 }
