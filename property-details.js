@@ -121,3 +121,88 @@ window.setPhoto = function (thumb, url) {
 
 document.addEventListener('DOMContentLoaded', loadPropertyDetails);
 
+
+// 1. Form submit handle karne ka function
+async function handleLeadSubmit(e) {
+    e.preventDefault();
+
+    // Buttons aur status elements pakrein
+    const btn = document.getElementById('contact-submit');
+    const successMsg = document.getElementById('contact-success');
+    
+    // URL se property_id lein (kyunke humein pata hona chahiye message kis ghar ka hai)
+    const params = new URLSearchParams(window.location.search);
+    const propId = params.get('id');
+
+    if (!propId) {
+        alert("Property ID nahi mili. Page refresh karke dobara koshish karein.");
+        return;
+    }
+
+    // Input values lein
+    const name = document.getElementById('contact-name').value.trim();
+    const phone = document.getElementById('contact-phone').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const msg = document.getElementById('contact-msg').value.trim();
+
+    // Choti si validation
+    if (!name || !phone || !msg) {
+        alert("Meharbani karke Name, Phone aur Message lazmi bharein.");
+        return;
+    }
+
+    // Button ko loading state mein le jayein
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    try {
+        // A. Pehle is property ka owner_id dhoondein
+        const { data: property, error: propError } = await supabase
+            .from('properties')
+            .select('owner_id')
+            .eq('id', propId)
+            .single();
+
+        if (propError || !property) throw new Error("Owner ki info nahi mil saki.");
+
+        // B. property_leads table mein data insert karein
+        const { error: leadError } = await supabase
+            .from('property_leads')
+            .insert([{
+                property_id: propId, // Table constraint ke mutabiq
+                owner_id: property.owner_id,
+                sender_name: name,
+                sender_phone: phone,
+                sender_email: email,
+                message: msg
+            }]);
+
+        if (leadError) throw leadError;
+
+        // C. Success! Form reset karein aur message dikhayein
+        successMsg.style.display = 'block';
+        document.getElementById('contact-name').value = '';
+        document.getElementById('contact-phone').value = '';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-msg').value = '';
+
+        // 5 second baad success message gayab kar dein
+        setTimeout(() => {
+            successMsg.style.display = 'none';
+        }, 5000);
+
+    } catch (err) {
+        console.error("Lead Error:", err.message);
+        alert("Error: " + err.message);
+    } finally {
+        // Button ko wapas normal karein
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        btn.disabled = false;
+    }
+}
+
+// 2. Event Listener lagayein
+const contactFormBtn = document.getElementById('contact-submit');
+if (contactFormBtn) {
+    contactFormBtn.addEventListener('click', handleLeadSubmit);
+}

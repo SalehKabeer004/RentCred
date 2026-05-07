@@ -89,12 +89,12 @@ async function setupOwnerDashboard(userId) {
                 <p>Total Leads</p>
             </div>
         </div>
-        <div class="stat-card">
+        <!-- <div class="stat-card">
             <div class="stat-icon-wrap amber"><i class="fas fa-star"></i></div>
             <div class="stat-info">
                 <h3>80%</h3>
                 <p>Trust Score</p>
-            </div>
+            </div> -->
         </div>
     `;
 
@@ -103,32 +103,10 @@ async function setupOwnerDashboard(userId) {
 
     // 4. Render Recent Inquiries (Overview Table ke liye)
     renderLeadsTable(leads);
+
 }
 
 // Function: My Listings Table
-// function renderMyListings(properties) {
-//     const emptyState = document.getElementById('empty-state-properties');
-//     const tableContainer = document.getElementById('listing-table-container');
-//     const tbody = document.getElementById('properties-tbody');
-
-//     if (properties && properties.length > 0) {
-//         emptyState.style.display = 'none';
-//         tableContainer.style.display = 'block';
-
-//         tbody.innerHTML = properties.map(p => `
-//             <tr style="border-bottom: 1px solid #edf2f7;">
-//                 <td style="padding: 15px; font-weight: 500;">${p.title}</td>
-//                 <td style="padding: 15px;">${p.city || 'N/A'}</td>
-//                 <td style="padding: 15px;"><span class="status active" style="background: #e6fffa; color: #234e52; padding: 4px 10px; border-radius: 20px; font-size: 12px;">Active</span></td>
-//                 <td style="padding: 15px;"><button class="edit-btn">Manage</button></td>
-                
-//             </tr>
-//         `).join('');
-//     } else {
-//         emptyState.style.display = 'block';
-//         tableContainer.style.display = 'none';
-//     }
-// }
 
 function renderMyListings(properties) {
     const emptyState = document.getElementById('empty-state-properties');
@@ -141,8 +119,8 @@ function renderMyListings(properties) {
 
         tbody.innerHTML = properties.map(p => {
             // Status color logic
-            const statusStyle = p.status === 'Active' 
-                ? 'background: #e6fffa; color: #234e52;' 
+            const statusStyle = p.status === 'Active'
+                ? 'background: #e6fffa; color: #234e52;'
                 : 'background: #fff5f5; color: #c53030;';
 
             return `
@@ -160,9 +138,13 @@ function renderMyListings(properties) {
                                 Manage <i class="fas fa-caret-down"></i>
                             </button>
                             <div id="dropdown-${p.id}" class="manage-dropdown">
-                                <a href="#" onclick="editListing('${p.id}')">
-                                    <i class="fas fa-edit"></i> Edit
+                                 <!-- <a href="#" onclick="editListing('${p.id}')">
+                                     <i class="fas fa-edit"></i> Edit
+                                 </a> -->
+                                <a href="#" onclick="updatePropertyStatus('${p.id}', 'Active')">
+                                    <i class="fas fa-check-circle"></i> Mark Active
                                 </a>
+
                                 <a href="#" onclick="updatePropertyStatus('${p.id}', 'Rented')">
                                     <i class="fas fa-check-circle"></i> Mark Rented
                                 </a>
@@ -186,55 +168,122 @@ function renderMyListings(properties) {
 }
 
 // Dropdown toggle karne ke liye
-// 1. Toggle Menu ko Global scope mein dalein
-window.toggleManageMenu = function(event, id) {
+// window.toggleManageMenu = function(event, id) {
+//     event.stopPropagation();
+
+//     // Saare dropdowns pehle band karein
+//     document.querySelectorAll('.manage-dropdown').forEach(el => {
+//         if (el.id !== `dropdown-${id}`) el.classList.remove('show');
+//     });
+
+//     // Target dropdown ko toggle karein
+//     const currentDropdown = document.getElementById(`dropdown-${id}`);
+//     if (currentDropdown) {
+//         currentDropdown.classList.toggle('show');
+//     }
+// };
+
+window.toggleManageMenu = function (event, id) {
     event.stopPropagation();
-    
-    // Saare dropdowns pehle band karein
     document.querySelectorAll('.manage-dropdown').forEach(el => {
         if (el.id !== `dropdown-${id}`) el.classList.remove('show');
     });
-
-    // Target dropdown ko toggle karein
-    const currentDropdown = document.getElementById(`dropdown-${id}`);
-    if (currentDropdown) {
-        currentDropdown.classList.toggle('show');
-    }
+    document.getElementById(`dropdown-${id}`)?.classList.toggle('show');
 };
 
 // 2. Status Update function ko Global dalein
-window.updatePropertyStatus = async function(id, newStatus) {
-    const { error } = await supabase
+// window.updatePropertyStatus = async function(id, newStatus) {
+//     const { error } = await supabase
+//         .from('properties')
+//         .update({ status: newStatus })
+//         .eq('id', id);
+
+//     if (error) {
+//         alert("Update failed: " + error.message);
+//     } else {
+//         // UI refresh karne ke liye apna fetch function call karein
+//         if (typeof fetchUserListings === 'function') { fetchUserListings()}
+//     }
+// };
+
+window.updatePropertyStatus = async function (id, newStatus) {
+    // 1. Status Update karein
+    const { error: updateError } = await supabase
         .from('properties')
         .update({ status: newStatus })
         .eq('id', id);
 
-    if (error) {
-        alert("Update failed: " + error.message);
+    if (updateError) {
+        alert("Error: " + updateError.message);
+        return;
+    }
+
+    // 2. Data dubara fetch karein (Proper Way)
+    // Pehle check karein logged in user kaun hai
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (user) {
+        const { data: properties, error: fetchError } = await supabase
+            .from('properties')
+            .select('*')
+            .eq('owner_id', user.id); // Yahan user.id dena zaroori hai
+
+        if (!fetchError) {
+            renderMyListings(properties); // UI refresh ho jayegi
+        }
     } else {
-        // UI refresh karne ke liye apna fetch function call karein
-        if (typeof fetchUserListings === 'function') fetchUserListings();
+        console.error("User not logged in");
     }
 };
 
 // 3. Delete function ko Global dalein
-window.deleteListing = async function(id) {
-    if (confirm("Are you sure you want to delete this listing?")) {
-        const { error } = await supabase
+// window.deleteListing = async function(id) {
+//     if (confirm("Are you sure you want to delete this listing?")) {
+//         const { error } = await supabase
+//             .from('properties')
+//             .delete()
+//             .eq('id', id);
+
+//         if (!error) {
+//             if (typeof fetchUserListings === 'function') fetchUserListings();
+//         } else {
+//             alert("Delete failed: " + error.message);
+//         }
+//     }
+// };
+
+window.deleteListing = async function (id) {
+    // 1. Pehle confirm karein
+    if (!confirm("Are you sure you want to delete this listing?")) return;
+
+    // 2. Database se delete karein
+    const { error: deleteError } = await supabase
+        .from('properties')
+        .delete()
+        .eq('id', id);
+
+    if (deleteError) {
+        alert("Delete failed: " + deleteError.message);
+        return;
+    }
+
+    // 3. Delete hone ke BAAD fresh data fetch karein
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (user) {
+        const { data: properties, error: fetchError } = await supabase
             .from('properties')
-            .delete()
-            .eq('id', id);
-        
-        if (!error) {
-            if (typeof fetchUserListings === 'function') fetchUserListings();
-        } else {
-            alert("Delete failed: " + error.message);
+            .select('*')
+            .eq('owner_id', user.id); // Correct: user.id pass karna zaroori hai
+
+        if (!fetchError) {
+            renderMyListings(properties); // UI refresh ho jayegi
         }
     }
 };
 
 // 4. Click outside to close logic
-window.addEventListener('click', function() {
+window.addEventListener('click', function () {
     document.querySelectorAll('.manage-dropdown').forEach(el => el.classList.remove('show'));
 });
 
@@ -398,7 +447,7 @@ async function handlePropertySubmit(e) {
             available_from: document.getElementById('p-available').value || null,
             min_stay: document.getElementById('p-minstay').value,
             amenities: amenities, // Array saved as JSONB
-            trust_score: 85, // Default score
+            // trust_score: 85, // Default score
             is_verified: false, // Default verification status
             nearby_facilities: {} // Empty object for now
         };

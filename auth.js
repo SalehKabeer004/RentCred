@@ -55,7 +55,7 @@ if (loginForm) {
         else {
             const logoutBtn = document.getElementById('logout-btn');
             alert("Login successful!");
-            window.location.href = "index.html";
+            window.location.href = "dashboard.html";
             logoutBtn.style.display = "block";
         }
     });
