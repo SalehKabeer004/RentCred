@@ -684,6 +684,20 @@ tbody tr:hover td { background: #fafbfc; }
 .dash-section { display: none; }
 .active-section { display: block; }
 
+#activity-tbody {
+    background-color:var(--bg-light);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.lead-row {
+    background-color: var(--white);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+}
+
 
 /* Modal default state: Hidden */
 /* --- Custom Modal Base --- */

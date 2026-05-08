@@ -32,8 +32,8 @@ async function loadPropertyDetails() {
     photoBadge.innerHTML = `<i class="fas fa-camera"></i> ${totalPhotos} Photos`;
 
     const statusBadge = document.querySelector('.badge-status');
-    statusBadge.innerText = prop.status || 'Status Not Found';
-    statusBadge.className = `badge-status ${prop.status?.toLowerCase() || 'unknown'}`;
+    statusBadge.innerText = prop.status === 'Rented' ? 'Rented' : 'Available';
+    statusBadge.className = `badge-status ${prop.status === 'Rented' ? 'rented' : 'active'}`;
 
     // Thumbnails rendering
     const thumbStrip = document.querySelector('.thumb-strip');

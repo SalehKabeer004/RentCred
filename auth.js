@@ -76,3 +76,17 @@ if (logoutBtn) {
         }
     });
 }
+
+// 4. Forgot Password Logic
+const forgotPasswordForm = document.getElementById('forgot-password-form');
+if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('forgot-password-email').value;
+
+        const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+        if (error) alert(error.message);
+        else alert("Password reset link sent to your email!");
+    });
+}

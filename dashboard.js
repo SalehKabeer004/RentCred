@@ -294,12 +294,20 @@ function renderLeadsTable(leads) {
 
     if (leads && leads.length > 0) {
         tbody.innerHTML = leads.map(l => `
-            <tr>
-                <td>Lead from ${l.sender_name}</td>
-                <td>${new Date(l.created_at).toLocaleDateString()}</td>
-                <td><span class="status pending">New</span></td>
-                <td><button class="edit-btn">Details</button></td>
-            </tr>
+            <div class="lead-row" style="display:flex; align-items:center; gap:15px; padding:10px; border-bottom:1px solid #edf2f7;">
+                <div style="width:40px; height:40px; border-radius:50%; background:#cbd5e0; display:flex; align-items:center; justify-content:center; font-weight:600; color:#2d3748;">
+                    ${l.sender_name ? l.sender_name.charAt(0).toUpperCase() : 'U'}
+                </div>
+                <div>
+                    <h4>${l.sender_name || 'Unknown Lead'}</h4>
+                    <p>${l.sender_email || 'No email provided'}</p>
+                    <p>${l.sender_phone || 'No phone provided'}</p>
+                    <p><span style="font-size:12px; color:#718096;">${new Date(l.created_at).toLocaleString()}</span></p>
+                </div>
+                <div style="margin-left:auto;">
+                    <p>${l.message ? (l.message.length > 50 ? l.message.substring(0, 47) + '...' : l.message) : 'No message provided'}</p>
+                </div>
+            </div>
         `).join('');
     } else {
         tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 20px;">No leads yet.</td></tr>`;

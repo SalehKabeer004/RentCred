@@ -208,13 +208,13 @@ body {
     border-radius: 20px;
 }
 
-.badge-status.available {
-    background: #27ae60;
+.badge-status.active {
+    background-color: #27ae60;
     color: white;
 }
 
 .badge-status.rented {
-    background: #e74c3c;
+    background-color: #e74c3c;
     color: white;
 }
 
