@@ -50,7 +50,9 @@ async function renderDashboard(profile) {
     const isOwner = profile.role === 'owner';
 
     // Header & Sidebar UI
+
     document.getElementById('nav-username').innerText = profile.full_name || "User";
+    document.getElementById('role-badge').innerText = profile.role || "User";
     document.getElementById('sidebar-name').innerText = profile.full_name || "User";
     document.getElementById('sidebar-email').innerText = profile.email || "Verified User";
     document.getElementById('user_name').innerText = (profile.full_name || "User").split(' ')[0];

@@ -87,6 +87,47 @@ if (forgotPasswordForm) {
 
         const { data, error } = await supabase.auth.resetPasswordForEmail(email);
         if (error) alert(error.message);
-        else alert("Password reset link sent to your email!");
+        else window.location.href = window.location.origin + '/reset-password.html';
+    });
+}
+
+// 5. Reset Password Logic
+const resetForm = document.getElementById('reset-password-form');
+
+if (resetForm) {
+    resetForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const newPassword = document.getElementById('reset-password').value;
+        const confirmPassword = document.getElementById('confirm-reset-password').value;
+
+        // 1. Basic Validation
+        if (newPassword !== confirmPassword) {
+            alert("Passwords match nahi kar rahe!");
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            alert("Password kam az kam 6 characters ka hona chahiye.");
+            return;
+        }
+
+        try {
+            // 2. Supabase Password Update Logic
+            // Jab user email link se aata hai, Supabase session auto-handle kar leta hai
+            const { data, error } = await supabase.auth.updateUser({
+                password: newPassword
+            });
+
+            if (error) throw error;
+
+            // 3. Success!
+            alert("Password kamyabi se tabdeel ho gaya hai! Ab aap login kar sakte hain.");
+            window.location.href = 'login.html'; // Login page par bhejein
+
+        } catch (err) {
+            console.error("Reset Error:", err.message);
+            alert("Masla hua: " + err.message);
+        }
     });
 }
